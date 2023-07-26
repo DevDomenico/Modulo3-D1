@@ -453,9 +453,38 @@ nav * {
 
     <a href="#" class="float-right mb-3 mr-3">Torna su</a>
     <script>
-        // EXTRA Crea con JavaScript la funzionalità per rimuovere il link "twitter" sotto alla sezione "Altro" nell'elemento "aside". Deve avvenire al caricamento della pagina, automticamente.
+        
+       // EXTRA Crea con JavaScript la funzionalità per rimuovere il link "twitter" sotto alla sezione "Altro" nell'elemento "aside". Deve avvenire al caricamento della pagina, automticamente.
+
+    function removeTwitterLink() {
+            let twitterLink = document.querySelector('.blog-sidebar div:last-child li:nth-of-type(2)');
+
+            // verifico se l'elemento è stato trovato prima di rimuoverlo
+            if (twitterLink) {
+                twitterLink.remove();
+            }
+        }
+
+        // Aggiungo la funzione alla gestione dell'evento 'onload' della finestra
+        window.onload = function () {
+            removeTwitterLink();
+        };
+       
+       
         // EXTRA Crea con JavaScript la funzionalità per rimuovere il corrispondente elemento padre dal DOM cliccando sul link "Continua a leggere".
+
+    
+
         // EXTRA Crea con JavaScript la funzionalità per creare un alert col nome dell'autore ogni volta che il cursore passa sopra l'autore del post.
+        
+        window.onload = function () {
+            // Seleziono tutti gli elementi con il nome dell'autore e aggiungo l'evento 'mouseover'
+            for (let author of document.querySelectorAll('.blog-post-meta a')) {
+                author.addEventListener('mouseover', function (event) {
+                    alert(event.target.innerText);
+                });
+            }
+        };
 
     </script>
 </body>
