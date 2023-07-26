@@ -61,69 +61,70 @@ ESERCIZIO 12) Crea un selettore per selezionare il secondo link del footer
                 font-size: 3.5rem;
             }
         }
-/*Esercizio 1*/
-.jumbotron h1 {
-  color: blue;
-}
-/*Esercizio 2*/
-nav * {
-       color: red;
-        }
-/*Esercizio 3*/
-.jumbotron p a {
-    color:green;
-}
-/*Esercizio 4*/
-.blog-post:first-of-type {
-            background-color: burlywood;
-        }
- /*Esercizio 5*/
- .blog-post hr:first-of-type {
-    border-color: red;
- }
 
- /*Esercizio 6*/
- nav span:nth-of-type(even) {
-            color: rgb(174, 20, 118);
-        }
-
- /*Esercizio 7*/
- .blog-sidebar div:nth-of-type(2) ol li:nth-of-type(even) a {
-            color: red;
-        }
-
-
-  /*Esercizio 8*/
-  .blog-post:nth-of-type(2) .blog-post-meta a {
-            color: green;
-        }
-
-   /*Esercizio 9*/
-   .blog-post:nth-of-type(3) ul li:nth-of-type(2) {
+        /*Esercizio 1*/
+        .jumbotron h1 {
             color: blue;
         }
 
-    /*Esercizio 10*/
-
-    a.float-right.mb-3.mr-3 {
-    color: brown;
-}
-
-     /*Esercizio 11*/
-     
-     nav.blog-pagination a.btn-outline-secondary:last-of-type {
-    background-color: yellow;
-}
-
-
-      /*Esercizio 12*/
-      footer a:nth-of-type(2) {
+        /*Esercizio 2*/
+        nav * {
             color: red;
         }
-      
+
+        /*Esercizio 3*/
+        .jumbotron p a {
+            color: green;
+        }
+
+        /*Esercizio 4*/
+        .blog-post:first-of-type {
+            background-color: burlywood;
+        }
+
+        /*Esercizio 5*/
+        .blog-post hr:first-of-type {
+            border-color: red;
+        }
+
+        /*Esercizio 6*/
+        nav span:nth-of-type(even) {
+            color: rgb(174, 20, 118);
+        }
+
+        /*Esercizio 7*/
+        .blog-sidebar div:nth-of-type(2) ol li:nth-of-type(even) a {
+            color: red;
+        }
 
 
+        /*Esercizio 8*/
+        .blog-post:nth-of-type(2) .blog-post-meta a {
+            color: green;
+        }
 
+        /*Esercizio 9*/
+        .blog-post:nth-of-type(3) ul li:nth-of-type(2) {
+            color: blue;
+        }
+
+        /*Esercizio 10*/
+
+        a.float-right.mb-3.mr-3 {
+            color: brown;
+        }
+
+        /*Esercizio 11*/
+
+        nav.blog-pagination a.btn-outline-secondary:last-of-type {
+            background-color: yellow;
+        }
+
+
+        /*Esercizio 12*/
+        footer a:nth-of-type(2) {
+            color: red;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet" />
 </head>
@@ -453,10 +454,10 @@ nav * {
 
     <a href="#" class="float-right mb-3 mr-3">Torna su</a>
     <script>
-        
-       // EXTRA Crea con JavaScript la funzionalità per rimuovere il link "twitter" sotto alla sezione "Altro" nell'elemento "aside". Deve avvenire al caricamento della pagina, automticamente.
 
-    function removeTwitterLink() {
+        // EXTRA Crea con JavaScript la funzionalità per rimuovere il link "twitter" sotto alla sezione "Altro" nell'elemento "aside". Deve avvenire al caricamento della pagina, automticamente.
+
+        function removeTwitterLink() {
             let twitterLink = document.querySelector('.blog-sidebar div:last-child li:nth-of-type(2)');
 
             // verifico se l'elemento è stato trovato prima di rimuoverlo
@@ -469,21 +470,35 @@ nav * {
         window.onload = function () {
             removeTwitterLink();
         };
-       
-       
+
+
         // EXTRA Crea con JavaScript la funzionalità per rimuovere il corrispondente elemento padre dal DOM cliccando sul link "Continua a leggere".
 
-    
+        document.addEventListener("click", function (event) {
+            if (event.target.classList.contains("stretched-link")) {
+                event.preventDefault();
+                event.target.closest(".col-md-6").remove();
+            }
+        });
+
+
+
+
 
         // EXTRA Crea con JavaScript la funzionalità per creare un alert col nome dell'autore ogni volta che il cursore passa sopra l'autore del post.
-        
+
+
+        function showAlert(event) {
+            alert("Nome dell'autore: " + event.target.innerText);
+        }
+
+        // Aggiungo la funzione alla gestione dell'evento 'onload' della finestra
         window.onload = function () {
-            // Seleziono tutti gli elementi con il nome dell'autore e aggiungo l'evento 'mouseover'
-            for (let author of document.querySelectorAll('.blog-post-meta a')) {
-                author.addEventListener('mouseover', function (event) {
-                    alert(event.target.innerText);
-                });
-            }
+            // Seleziono tutti i link degli autori dei post e associo l'evento 'mouseover' per mostrare l'alert
+            let authorLinks = document.querySelectorAll('.blog-post-meta a');
+
+            // Itero attraverso tutti i link degli autori dei post e associo l'evento 'mouseover' per mostrare l'alert
+            authorLinks.forEach(link => link.addEventListener('mouseover', showAlert));
         };
 
     </script>
